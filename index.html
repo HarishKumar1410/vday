@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For You ❤️</title>
+  <title>For My Love ❤️</title>
   <style>
     body {
       margin: 0;
@@ -18,19 +18,18 @@
     }
 
     .container {
-      background: rgba(0,0,0,0.2);
+      background: rgba(0,0,0,0.25);
       padding: 40px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
+      max-width: 500px;
     }
 
-    h1 {
-      font-size: 2.5em;
-    }
+    h1 { font-size: 2.5em; }
 
     button {
-      margin-top: 20px;
-      padding: 12px 24px;
+      margin-top: 15px;
+      padding: 12px 20px;
       border: none;
       border-radius: 10px;
       background: white;
@@ -40,51 +39,89 @@
       transition: 0.3s;
     }
 
-    button:hover {
-      transform: scale(1.1);
-    }
+    button:hover { transform: scale(1.1); }
 
-    .hidden {
-      display: none;
-      margin-top: 20px;
-      font-size: 1.2em;
-    }
+    .hidden { display: none; margin-top: 20px; }
 
     .heart {
       position: absolute;
-      color: red;
       animation: floatUp 5s linear infinite;
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-800px); opacity: 0; }
     }
+
+    .btn-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Hey Love 💖</h1>
-  <p>Click the button... I made something just for you.</p>
-  <button onclick="showMessage()">Click Me</button>
+  <h1>Hey MY_GIRL_NAME 💖</h1>
+  <p>I made this just for you...</p>
+
+  <button onclick="showMessage()">Click me ❤️</button>
 
   <div id="message" class="hidden">
     <p>
-      I just want you to know... 🌹<br><br>
-      Every moment with you means the world to me.
-      You make my life brighter, my heart lighter,
-      and my days so much happier.
+      You mean more to me than I can ever explain. 🌹<br><br>
+      Every day with you feels special.
+      You make everything in my life better.
       <br><br>
-      I love you more than words can ever explain ❤️
+      I love you so much ❤️
     </p>
+
+    <button onclick="nextReason()">Why I Love You 💌</button>
+    <p id="reason"></p>
+
+    <button onclick="showQuestion()">Important Question 👀</button>
+  </div>
+
+  <div id="questionBox" class="hidden">
+    <h2>Will you stay with me forever? 💍</h2>
+    <div class="btn-row">
+      <button onclick="yesAnswer()">YES ❤️</button>
+      <button id="noBtn" onmouseover="moveNo()">NO 😢</button>
+    </div>
   </div>
 </div>
 
 <script>
+const reasons = [
+  "You make me smile without even trying 😊",
+  "I feel safe and happy when I'm with you ❤️",
+  "You're the best thing that ever happened to me 🌹",
+  "I love your laugh 😍",
+  "You make my life complete 💕"
+];
+
+let index = 0;
+
 function showMessage() {
   document.getElementById("message").classList.remove("hidden");
   createHearts();
+}
+
+function nextReason() {
+  document.getElementById("reason").innerText = reasons[index];
+  index = (index + 1) % reasons.length;
+}
+
+function showQuestion() {
+  document.getElementById("questionBox").classList.remove("hidden");
+}
+
+function yesAnswer() {
+  alert("I love you forever ❤️");
+}
+
+function moveNo() {
+  const btn = document.getElementById("noBtn");
+  btn.style.position = "absolute";
+  btn.style.left = Math.random() * window.innerWidth + "px";
+  btn.style.top = Math.random() * window.innerHeight + "px";
 }
 
 function createHearts() {
@@ -97,9 +134,7 @@ function createHearts() {
 
     document.body.appendChild(heart);
 
-    setTimeout(() => {
-      heart.remove();
-    }, 5000);
+    setTimeout(() => heart.remove(), 5000);
   }, 300);
 }
 </script>
