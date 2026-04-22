@@ -1,296 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Will You Be My Valentine?</title>
-
-<style>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <style>
     body {
-        margin: 0;
-        height: 100vh;
-        background: linear-gradient(135deg, #ff4d6d, #ff8fab, #ffc2d1);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Segoe UI', sans-serif;
-        overflow: hidden;
-        transition: 1s ease;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+      text-align: center;
     }
 
-    .card {
-        width: 95%;
-        max-width: 900px;
-        height: 85vh;
-        background: rgba(255,255,255,0.95);
-        border-radius: 30px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        display: flex;
-        overflow: hidden;
-        position: relative;
-        z-index: 2;
-    }
-
-    .left {
-        flex: 1.2;
-        padding: 40px;
-        overflow-y: auto;
-        background: #fff0f5;
-    }
-
-    .right {
-        flex: 1;
-        padding: 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(to bottom right, #ffe5ec, #fff0f5);
+    .container {
+      background: rgba(0,0,0,0.2);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
     }
 
     h1 {
-        color: #d6336c;
-        text-align: center;
-        animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-        from { text-shadow: 0 0 5px #ff4d6d; }
-        to { text-shadow: 0 0 20px #ff4d6d; }
-    }
-
-    h2 {
-        text-align: center;
-        color: #b5179e;
-    }
-
-    p {
-        font-size: 15px;
-        color: #444;
-        line-height: 1.7;
-    }
-
-    .question {
-        margin-top: 20px;
-        font-size: 22px;
-        font-weight: bold;
-        color: #d6336c;
-        text-align: center;
-    }
-
-    .buttons {
-        margin-top: 25px;
-        display: flex;
-        gap: 20px;
-        position: relative;
+      font-size: 2.5em;
     }
 
     button {
-        padding: 12px 25px;
-        font-size: 18px;
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: 0.3s ease;
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      background: white;
+      color: #ff4d6d;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    #yesBtn {
-        background: #ff4d6d;
-        color: white;
-        animation: pulse 1.5s infinite;
+    button:hover {
+      transform: scale(1.1);
     }
 
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.08); }
-        100% { transform: scale(1); }
+    .hidden {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.2em;
     }
 
-    #yesBtn:hover {
-        background: #e63950;
-        transform: scale(1.1);
-    }
-
-    #noBtn {
-        background: #adb5bd;
-        color: white;
-        position: relative;
-    }
-
-    #countdown {
-        margin-top: 20px;
-        font-weight: bold;
-        color: #b5179e;
-        text-align: center;
-    }
-
-    /* LOVE SCREEN */
-    .loveScreen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #d00000, #ff4d6d, #ff8fab);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        opacity: 0;
-        pointer-events: none;
-        transition: 1.2s ease;
-        z-index: 10;
-        text-align: center;
-    }
-
-    .loveScreen.show {
-        opacity: 1;
-        pointer-events: all;
-    }
-
-    .loveContent {
-        animation: popIn 1.2s ease forwards;
-    }
-
-    .loveText {
-        font-size: 65px;
-        font-weight: bold;
-        text-shadow: 0 0 25px rgba(255,255,255,0.9);
-    }
-
-    #loveImage {
-        width: 280px;
-        margin-top: 30px;
-        border-radius: 25px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        opacity: 0;
-        transform: scale(0.8);
-        animation: imageReveal 1.5s ease forwards;
-        animation-delay: 0.8s;
-    }
-
-    .loveScreen small {
-        display: block;
-        font-size: 24px;
-        margin-top: 20px;
-    }
-
-    @keyframes popIn {
-        from { transform: scale(0.7); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes imageReveal {
-        to { opacity: 1; transform: scale(1); }
-    }
-
-    /* Floating hearts */
     .heart {
-        position: fixed;
-        font-size: 20px;
-        animation: float 6s linear infinite;
-        opacity: 0.7;
-        z-index: 1;
+      position: absolute;
+      color: red;
+      animation: floatUp 5s linear infinite;
     }
 
-    @keyframes float {
-        0% { transform: translateY(-10vh); }
-        100% { transform: translateY(110vh); }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
     }
-
-    @media(max-width: 768px){
-        .card {
-            flex-direction: column;
-            height: 95vh;
-        }
-    }
-</style>
+  </style>
 </head>
-
 <body>
 
-<div class="card">
+<div class="container">
+  <h1>Hey Love 💖</h1>
+  <p>Click the button... I made something just for you.</p>
+  <button onclick="showMessage()">Click Me</button>
 
-    <div class="left">
-        <h1>Happy Valentine’s Day ❤️</h1>
-        <h2>Dear My Beloved Nikitoueyy 🌸</h2>
-
-        <p>Happy Valentine’s Day, my dearest Niki. From the very moment you entered my life back in May 2023, you brought me a sense of warmth I never realize I needed. 
-	   It’s like an epitome of shining light when you open your curtains in the morning. Loving you has been a really beautiful adventure. 
-	   It has filled my days with laughter that lingers in my heart forever. We share quiet moments that say more than words ever could. 
-	   Just being near you feels like home. You make my heart feel so full that it almost overflows. I cherish how your eyes light up when you talk about your passions,
-	   your goals, your dreams, your everyday episodes of yappings. I love the softness in your voice when you say my name. Even that day during prom, your hand fits 
-	   perfectly in mine, as if it was always meant to be there. With you, love is more than just a word or an ordinary feeling. You inspire me to be better, to dream bigger, 
-	   to love harder, and to never take a single moment for granted. On this Valentine’s Day, I want you to know that my heart chooses you again and again, in every lifetime, 
-	   in every version of our story, through every challenge and triumph. I am endlessly grateful for your patience, kindness, strength, and the way you love me so effortlessly. 
-	   If I could gather every star in the sky, every grain of sand on every shore, and every heartbeat in my chest, it still wouldn’t measure how much you mean to me. 
-	   You are my safe place, my greatest joy, my best friend, and my forever love. Today, tomorrow, and always, I will celebrate you not just because it’s Valentine’s Day, 
-	   but because loving you is the sweetest gift I have ever known.💕</p>
-
-        <div id="countdown"></div>
-    </div>
-
-    <div class="right">
-        <div class="question">Will you be my Valentine? 💌</div>
-
-        <div class="buttons">
-            <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
-            <button id="noBtn">No 😜</button>
-        </div>
-    </div>
-
-</div>
-
-<div class="loveScreen" id="loveScreen">
-    <div class="loveContent">
-        <div class="loveText">I LOVE YOU ❤️</div>
-        <img id="loveImage" src="hunter.jpg" alt="Our Special Moment">
-        <small>Forever & Always</small>
-    </div>
+  <div id="message" class="hidden">
+    <p>
+      I just want you to know... 🌹<br><br>
+      Every moment with you means the world to me.
+      You make my life brighter, my heart lighter,
+      and my days so much happier.
+      <br><br>
+      I love you more than words can ever explain ❤️
+    </p>
+  </div>
 </div>
 
 <script>
-    function yesClicked() {
-        document.getElementById("loveScreen").classList.add("show");
-    }
+function showMessage() {
+  document.getElementById("message").classList.remove("hidden");
+  createHearts();
+}
 
-    const noBtn = document.getElementById("noBtn");
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
 
-    noBtn.addEventListener("mouseenter", () => {
-        const moveX = Math.random() * 150 - 75;
-        const moveY = Math.random() * 100 - 50;
-        noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
-    });
+    document.body.appendChild(heart);
 
-    // Countdown since 27 May 2023
-    const startDate = new Date("May 27, 2023 00:00:00").getTime();
-
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const diff = now - startDate;
-
-        const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-        const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
-        document.getElementById("countdown").innerHTML =
-            `Together for: ${years}y ${days}d ${hours}h ${minutes}m ${seconds}s ❤️`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // Floating hearts
-    setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = Math.random() * 20 + 15 + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
-    }, 300);
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }, 300);
+}
 </script>
 
 </body>
