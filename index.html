@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday, Babytoueyy</title>
+  <title>Happypppyyyy Birthdayyyyyy to my Dearesttt Babytoueyy</title>
   <meta name="description" content="A romantic long-distance birthday surprise website for Babytoueyy." />
   <style>
     :root {
@@ -761,6 +761,23 @@
       backdrop-filter: blur(10px);
     }
 
+    .memory-photo.has-image {
+      min-height: 210px;
+      background: none;
+      overflow: hidden;
+    }
+
+    .memory-photo.has-image::before {
+      display: none;
+    }
+
+    .memory-photo img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+    }
+
     .memory-body {
       padding: 18px;
     }
@@ -1191,7 +1208,7 @@
     <div class="gate-card">
       <div class="big-heart">💖</div>
       <h2>A birthday surprise is waiting for you</h2>
-      <p id="gateText">This little page travelled through the distance just to remind you: you are loved, celebrated, and never forgotten.</p>
+      <p id="gateText">This little page travelled through the Pahang, Negeri Sembilan, Selangor and KL just to remind you that you are loved, celebrated, and never forgotten.</p>
       <button class="primary-button" id="openGift">Open your surprise ✨</button>
     </div>
   </div>
@@ -1199,11 +1216,13 @@
   <div class="heart-rain" id="heartRain"></div>
   <div class="confetti-layer" id="confettiLayer"></div>
 
+  <audio id="bgMusic" src="assets/song.mp3" loop preload="auto"></audio>
+
   <div class="site-shell">
     <nav class="nav">
       <a class="brand" href="#top" aria-label="Go to top">
         <span class="brand-mark">🎂</span>
-        <span id="brandName">For Babytoueyy</span>
+        <span id="brandName">For My Babytoueyy</span>
       </a>
       <div class="nav-actions">
         <a class="nav-link" href="#letter">Letter</a>
@@ -1217,13 +1236,13 @@
     <main id="top">
       <section class="hero">
         <div class="hero-card glass">
-          <div class="eyebrow">💌 A love letter across the distance</div>
-          <h1><span class="gradient-text">Happy Birthday</span>, <span id="heroName">Babytoueyy</span></h1>
-          <p class="subtitle" id="heroSubtitle">Even if I cannot be right beside you today, I wanted to give you something that feels like a hug, a kiss on the forehead, and a reminder that you are loudly loved.</p>
+          <div class="eyebrow">💌 A love letter across the states</div>
+          <h1><span class="gradient-text">Happy Birthdayy</span>, <span id="heroName">NikiToueyyyyyyy!!!!!!!!!</span></h1>
+          <p class="subtitle" id="heroSubtitle">Even if I cannot be right beside you today, I wanted to give you something that feels like a hug, a kiss on the forehead, and a reminder that you are always loved. I hope you like it 😔</p>
           <div class="type-line"><span id="typewriter"></span><span class="caret"></span></div>
           <div class="hero-actions">
             <a class="primary-button" href="#letter">Read my letter 💗</a>
-            <button class="secondary-button" id="sendHearts">Send hearts to her screen 💕</button>
+            <button class="secondary-button" id="sendHearts">Click Me for a Shower 💕</button>
           </div>
         </div>
 
@@ -1241,15 +1260,15 @@
               <div class="notification-stack">
                 <div class="notification">
                   <strong>Birthday wish from <span id="notifFrom">Harish</span></strong>
-                  <p>Open when you need to feel loved loudly.</p>
+                  <p>Open when you need to feel loved.</p>
                 </div>
                 <div class="notification">
                   <strong>Long-distance delivery 💌</strong>
-                  <p>No matter the kilometres, my heart still chooses you.</p>
+                  <p>No matter the kilometres, the miles and the blocks apart, my heart still chooses you.</p>
                 </div>
                 <div class="notification">
                   <strong>Reminder</strong>
-                  <p id="notifReminder">You deserve a birthday filled with peace, softness, and love.</p>
+                  <p id="notifReminder">You deserve a birthday filled with everything the world has to give...joy, peace, softness, happiness, care and love.</p>
                 </div>
               </div>
               <div class="swipe">Swipe with your heart ✨</div>
@@ -1264,7 +1283,7 @@
             <div class="section-kicker">🌍 Long-distance, same sky</div>
             <h2 class="section-title">Two places, one heart.</h2>
           </div>
-          <p class="section-copy">A birthday countdown, both our clocks, and a soft reminder that distance is only geography — not a limit to love.</p>
+          <p class="section-copy">A birthday countdown, both our clocks, and a reminder that distance is only geography does not meausure our love.</p>
         </div>
 
         <div class="grid two-col">
@@ -1281,7 +1300,7 @@
 
           <article class="info-card clock-card">
             <h3>Our clocks</h3>
-            <p>Even when our days do not line up perfectly, my love still finds you.</p>
+            <p>Even when our days do not line up perfectly regardless if its stormy, rainy or you name it. My heart will always look for you in the turbulence.</p>
             <div class="clock-row">
               <div><span id="myCityLabel">My time</span><strong id="myClock">--:--</strong></div>
               <div>🕰️</div>
@@ -1323,7 +1342,7 @@
             <div class="section-kicker">🫶 Tiny truths</div>
             <h2 class="section-title">Reasons I love and celebrate you.</h2>
           </div>
-          <p class="section-copy">A birthday is not only about age. It is about celebrating the person you are, the softness you carry, and the way your existence matters.</p>
+          <p class="section-copy">A birthday is not only about age. It is about celebrating the person you are, the softness you carry, and the way your existence, presence and thoughts matters.</p>
         </div>
         <div class="info-card">
           <ul class="reasons-list" id="reasonsList"></ul>
@@ -1460,10 +1479,6 @@ Happy birthday, my Babytoueyy. I love you so much.`,
     let deleting = false;
     let letterTimer = null;
     let musicOn = false;
-    let audioContext = null;
-    let musicTimer = null;
-
-
 
     function applyTheme() {
       const themes = {
@@ -1518,16 +1533,27 @@ Happy birthday, my Babytoueyy. I love you so much.`,
       const emojis = ['📷', '💌', '🌙', '🎧', '🫶', '✨'];
       const grid = $('#memoryGrid');
       grid.innerHTML = '';
+
       state.memories.slice(0, 6).forEach((memory, index) => {
         const card = document.createElement('article');
         card.className = 'memory-card';
+
+        const image = `assets/photo${index + 1}.jpg`;
+
         card.innerHTML = `
-          <div class="memory-photo"><span>${emojis[index % emojis.length]}</span></div>
+          <div class="memory-photo has-image">
+            <img
+              src="${image}"
+              alt="Memory ${index + 1}"
+              onerror="this.parentElement.classList.remove('has-image'); this.parentElement.innerHTML='<span>${emojis[index % emojis.length]}</span>';"
+            >
+          </div>
           <div class="memory-body">
             <h3>Memory ${index + 1}</h3>
             <p>${escapeHtml(memory)}</p>
           </div>
         `;
+
         grid.appendChild(card);
       });
     }
@@ -1535,9 +1561,6 @@ Happy birthday, my Babytoueyy. I love you so much.`,
     function escapeHtml(value) {
       return String(value).replace(/[&<>"]/g, (match) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[match]));
     }
-
-
-
 
     function updateClocks() {
       const now = new Date();
@@ -1680,38 +1703,21 @@ Happy birthday, my Babytoueyy. I love you so much.`,
     }
 
     function toggleMusic() {
+      const music = $('#bgMusic');
+
       musicOn = !musicOn;
       $('#musicToggle').textContent = musicOn ? '♪ Music On' : '♪ Music';
-      if (musicOn) startMusic();
-      else stopMusic();
-    }
 
-    function startMusic() {
-      audioContext = audioContext || new (window.AudioContext || window.webkitAudioContext)();
-      const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 659.25];
-      let step = 0;
-      const playNote = () => {
-        if (!musicOn || !audioContext) return;
-        const oscillator = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-        oscillator.type = 'sine';
-        oscillator.frequency.value = notes[step % notes.length];
-        gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.06, audioContext.currentTime + 0.04);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.62);
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
-        oscillator.start();
-        oscillator.stop(audioContext.currentTime + 0.68);
-        step++;
-      };
-      playNote();
-      musicTimer = setInterval(playNote, 720);
-    }
-
-    function stopMusic() {
-      if (musicTimer) clearInterval(musicTimer);
-      musicTimer = null;
+      if (musicOn) {
+        music.volume = 0.75;
+        music.play().catch(() => {
+          musicOn = false;
+          $('#musicToggle').textContent = '♪ Music';
+          alert('Please tap the music button again to start the song.');
+        });
+      } else {
+        music.pause();
+      }
     }
 
     $('#openGift').addEventListener('click', () => {
